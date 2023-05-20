@@ -1,6 +1,6 @@
 import Navbar from './Navbar';
 import Signup from './Signup';
-import { Container, Nav } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { AuthProvider } from '../contexts/AuthContext';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Dashboard from './Dashboard';
@@ -11,13 +11,16 @@ import UpdateProfile from './UpdateProfile';
 
 function App() {
   return (
-    <Container
-      className="d-flex align-items-center justify-content-center"
-      style={{ minHeight: "100vh" }}
-    >
-      <div className="w-100" style={{ maxWidth: "400px" }}>
-        <Router>
+
+    <Router>
+      <Container
+        className="d-flex align-items-center justify-content-center"
+        style={{ minHeight: "100vh" }}
+      >
+        <div className="fixed-top">
           <Navbar />
+        </div>
+        <div className="w-100" style={{ maxWidth: "400px" }}>
           <AuthProvider>
             <Routes>
               <Route exact path="/" element={<PrivateRoute />}>
@@ -31,9 +34,9 @@ function App() {
               <Route exact path="/forgot-password" element={<ForgotPassword />} />
             </Routes>
           </AuthProvider>
-        </Router>
-      </div>
-    </Container>
+        </div>
+      </Container>
+    </Router>
   )
 }
 
